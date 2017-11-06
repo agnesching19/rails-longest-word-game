@@ -1,6 +1,13 @@
-<h1 class='text-center'>Result</h1>
-<h2 class='text-center'><%= params[:answer] %></h2>
-<p class='text-center'>Message:<%= @score[:message] %></p>
-<p class='text-center'>Result:<%= @score[:result] %></p>
+<h1 class="text-center">Result</h1>
 
-<p class='text-center'><%= link_to "Play again", 'new' %></p>
+<% if @included %>
+  <% if @english_word %>
+    <p class="text-center"><strong>Congratulations!</strong> <%= @word %> is a valid English word!</p>
+  <% else %>
+    <p class="text-center">Sorry but <strong><%= @word %></strong> does not seem to be a valid English word...</p>
+  <% end %>
+<% else %>
+  <p class="text-center">Sorry but <strong><%= @word %></strong> can't be built out of <%= @letters.join(", ") %></p>
+<% end %>
+
+<p class="text-center"><%= link_to "Play again", new_path %></p>
